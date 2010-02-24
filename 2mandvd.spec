@@ -10,7 +10,7 @@ License:	GPLv2 and LGPL
 Group:		Video
 Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 Source1:	%{srcname}.desktop
-BuildRequires:  qt4-devel
+BuildRequires:  qt4-devel >= 4.6
 Requires:	dvdauthor
 Requires:	dvdauthor
 Requires:	ffmpeg >= 0.5
