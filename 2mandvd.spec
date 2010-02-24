@@ -1,4 +1,6 @@
-Name:		2ManDVD
+%define srcname	2ManDVD
+
+Name:		2mandvd
 Version:	1.3
 Release:	%mkrel 1
 Summary:	Video DVD creation tool
@@ -6,8 +8,8 @@ URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
 License:	GPLv2 and LGPL
 Group:		Video
-Source:		http://download.tuxfamily.org/2mandvd/%{name}-%{version}.tar.gz
-Source1:	%{name}.desktop
+Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
+Source1:	%{srcname}.desktop
 BuildRequires:  qt4-devel
 Requires:	dvdauthor
 Requires:	dvdauthor
@@ -21,13 +23,13 @@ Requires:	netpbm
 Requires:	sox
 Requires:	transcode
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
-
+Obsoletes:	2ManDVD
 
 %description
 ManDVD is a graphical tool for creating Video DVDs, including menus.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{srcname}
 
 %build
 %qmake_qt4 2ManDVD.pro
@@ -38,17 +40,17 @@ rm -rf %{buildroot}
 
 # put the executable in %{_datadir}/%{name} and symlink it to %_bindir
 # otherwise the UI localizations don't work
-install -D -m 755 %{name} %{buildroot}%{_datadir}/%{name}/%{name}
+install -D -m 755 %{srcname} %{buildroot}%{_datadir}/%{srcname}/%{srcname}
 
 mkdir %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
-	ln -s %{_datadir}/%{name}/%{name} 2mandvd
+	ln -s %{_datadir}/%{srcname}/%{srcname} 2mandvd
 popd
 
-install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{name}
+install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
 
-install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{name}.desktop
-install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{srcname}.desktop
+install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
 
 %clean
 rm -rf %{buildroot}
@@ -56,8 +58,8 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %{_bindir}/2mandvd
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/%{name}
-%{_datadir}/%{name}/2mandvd_*.qm
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
+%dir %{_datadir}/%{srcname}
+%{_datadir}/%{srcname}/%{srcname}
+%{_datadir}/%{srcname}/2mandvd_*.qm
+%{_datadir}/applications/%{srcname}.desktop
+%{_datadir}/pixmaps/%{srcname}.png
