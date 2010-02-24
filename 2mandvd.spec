@@ -44,7 +44,7 @@ install -D -m 755 %{srcname} %{buildroot}%{_datadir}/%{srcname}/%{srcname}
 
 mkdir %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
-	ln -s %{_datadir}/%{srcname}/%{srcname} 2mandvd
+	ln -s %{_datadir}/%{srcname}/%{srcname} 2ManDVD
 popd
 
 install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
@@ -57,7 +57,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%{_bindir}/2mandvd
+%{_bindir}/%{srcname}
 %dir %{_datadir}/%{srcname}
 %{_datadir}/%{srcname}/%{srcname}
 %{_datadir}/%{srcname}/2mandvd_*.qm
