@@ -22,7 +22,7 @@ Requires:	mkisofs
 Requires:	mplayer
 Requires:	netpbm
 Requires:	sox
-Suggets:	transcode
+Suggests:	transcode
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 Obsoletes:	2ManDVD
 
