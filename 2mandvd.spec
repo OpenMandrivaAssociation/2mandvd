@@ -15,13 +15,14 @@ Requires:	dvdauthor
 Requires:	dvdauthor
 Requires:	ffmpeg >= 0.5
 Requires:	ffmpegthumbnailer
+Requires:	growisofs
 Requires:	mencoder
 Requires:	mjpegtools
 Requires:	mkisofs
 Requires:	mplayer
 Requires:	netpbm
 Requires:	sox
-Requires:	transcode
+Suggets:	transcode
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 Obsoletes:	2ManDVD
 
