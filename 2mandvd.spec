@@ -2,7 +2,7 @@
 
 Name:		2mandvd
 Version:	1.3.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Video DVD creation tool
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
@@ -11,11 +11,11 @@ Group:		Video
 Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 Source1:	%{srcname}.desktop
 BuildRequires:  qt4-devel >= 4.6
-Requires:	dvdauthor
+
+Requires:	dvd+rw-tools
 Requires:	dvdauthor
 Requires:	ffmpeg >= 0.5
 Requires:	ffmpegthumbnailer
-Requires:	growisofs
 Requires:	mencoder
 Requires:	mjpegtools
 Requires:	mkisofs
