@@ -2,7 +2,7 @@
 
 Name:		2mandvd
 Version:	1.3.3
-Release:	%mkrel 1
+Release:	%mkrel 2 
 Summary:	Video DVD creation tool
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
