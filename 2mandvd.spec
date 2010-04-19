@@ -2,7 +2,7 @@
 
 Name:		2mandvd
 Version:	1.3.3
-Release:	%mkrel 3 
+Release:	%mkrel 4
 Summary:	Video DVD creation tool
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
@@ -10,6 +10,8 @@ License:	GPLv2 and LGPL
 Group:		Video
 Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 Source1:	%{srcname}.desktop
+Patch0:		jpegtopnm_1.3.3_wrong_detection.patch
+
 BuildRequires:  qt4-devel >= 4.6
 
 Requires:	dvd+rw-tools
@@ -31,6 +33,7 @@ ManDVD is a graphical tool for creating Video DVDs, including menus.
 
 %prep
 %setup -q -n %{srcname}
+%patch0
 
 %build
 %qmake_qt4 2ManDVD.pro
