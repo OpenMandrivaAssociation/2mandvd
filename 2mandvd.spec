@@ -2,7 +2,7 @@
 
 Name:		2mandvd
 Version:	1.3.3
-Release:	%mkrel 2 
+Release:	%mkrel 3 
 Summary:	Video DVD creation tool
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
@@ -49,6 +49,7 @@ pushd %{buildroot}%{_bindir}
 popd
 
 install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
+install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
 
 install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{srcname}.desktop
 install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
@@ -62,5 +63,6 @@ rm -rf %{buildroot}
 %dir %{_datadir}/%{srcname}
 %{_datadir}/%{srcname}/%{srcname}
 %{_datadir}/%{srcname}/2mandvd_*.qm
+%{_datadir}/%{srcname}/fake.pl
 %{_datadir}/applications/%{srcname}.desktop
 %{_datadir}/pixmaps/%{srcname}.png
