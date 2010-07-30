@@ -9,7 +9,6 @@ URL:		http://2mandvd.tuxfamily.org/
 License:	GPLv2 and LGPL
 Group:		Video
 Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
-Source1:	%{srcname}.desktop
 Patch0:		jpegtopnm_1.3.3_wrong_detection.patch
 
 BuildRequires:  qt4-devel >= 4.6
@@ -54,7 +53,22 @@ popd
 install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
 install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
 
-install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{srcname}.desktop
+# create .desktop file
+mkdir -p %{buildroot}%{_datadir}/applications/
+
+cat > %{buildroot}%{_datadir}/applications/%{srcname}.desktop << EOF
+[Desktop Entry]
+Type=Application
+Exec=2ManDVD -graphicssystem raster
+Icon=2ManDVD
+GenericName=2ManDVD
+Comment=Video DVD Creator
+Name=2ManDVD
+Terminal=false
+Categories=AudioVideo;DiscBurning;
+X-KDE-StartupNotify=true
+EOF
+
 install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
 
 %clean
