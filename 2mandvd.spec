@@ -1,7 +1,7 @@
 %define srcname	2ManDVD
 
 Name:		2mandvd
-Version:	1.5.3
+Version:	1.5.5
 Release:	%mkrel 1
 Summary:	Video DVD creation tool
 URL:		http://2mandvd.tuxfamily.org/
