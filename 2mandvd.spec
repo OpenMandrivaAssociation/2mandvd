@@ -1,16 +1,17 @@
 %define srcname	2ManDVD
 
 Name:		2mandvd
-Version:	1.5.5
+Version:	1.7.3
 Release:	%mkrel 1
-Summary:	Video DVD creation tool
+Summary:	Video DVD creation tool, successor to ManDVD
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
 License:	GPLv2 and LGPL
 Group:		Video
 Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 
-BuildRequires:  qt4-devel >= 4.6
+BuildRequires:	qt4-devel >= 4.6
+BuildRequires:	ffmpeg-devel
 
 Requires:	dvd+rw-tools
 Requires:	dvdauthor
@@ -22,12 +23,13 @@ Requires:	mkisofs
 Requires:	mplayer
 Requires:	netpbm
 Requires:	sox
+Requires:	exif
 Suggests:	transcode
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 Obsoletes:	2ManDVD
 
 %description
-ManDVD is a graphical tool for creating Video DVDs, including menus.
+2ManDVD is a graphical tool for creating Video DVDs and slideshows, including
+menus.
 
 N.B. Executable name is 2ManDVD
 
@@ -39,24 +41,24 @@ N.B. Executable name is 2ManDVD
 %make
 
 %install
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 # put the executable in %{_datadir}/%{name} and symlink it to %_bindir
 # otherwise the UI localizations don't work
-install -D -m 755 %{srcname} %{buildroot}%{_datadir}/%{srcname}/%{srcname}
+%__install -D -m 755 %{srcname} %{buildroot}%{_datadir}/%{srcname}/%{srcname}
 
-mkdir %{buildroot}%{_bindir}
+%__mkdir_p %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
 	ln -s %{_datadir}/%{srcname}/%{srcname} 2ManDVD
 popd
 
-install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
-install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
+%__install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
+%__install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
 
 # create .desktop file
-mkdir -p %{buildroot}%{_datadir}/applications/
+%__mkdir_p %{buildroot}%{_datadir}/applications/
 
-cat > %{buildroot}%{_datadir}/applications/%{srcname}.desktop << EOF
+%__cat > %{buildroot}%{_datadir}/applications/%{srcname}.desktop << EOF
 [Desktop Entry]
 Type=Application
 Exec=2ManDVD -graphicssystem raster
@@ -69,10 +71,10 @@ Categories=AudioVideo;DiscBurning;
 X-KDE-StartupNotify=true
 EOF
 
-install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
+%__install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -83,3 +85,4 @@ rm -rf %{buildroot}
 %{_datadir}/%{srcname}/fake.pl
 %{_datadir}/applications/%{srcname}.desktop
 %{_datadir}/pixmaps/%{srcname}.png
+
