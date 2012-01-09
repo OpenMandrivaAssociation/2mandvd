@@ -12,6 +12,7 @@ Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 
 BuildRequires:	qt4-devel >= 4.6
 BuildRequires:	ffmpeg-devel
+BuildRequires:	SDL-devel
 
 Requires:	dvd+rw-tools
 Requires:	dvdauthor
