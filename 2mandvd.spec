@@ -9,6 +9,7 @@ URL:		http://2mandvd.tuxfamily.org/
 License:	GPLv2 and LGPL
 Group:		Video
 Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
+Patch:		2ManDVD-ffmpeg-0.11.patch
 
 BuildRequires:	qt4-devel >= 4.6
 BuildRequires:	ffmpeg-devel
@@ -36,6 +37,7 @@ N.B. Executable name is 2ManDVD
 
 %prep
 %setup -q -n %{srcname}
+%patch -p1 -b .compile~
 
 %build
 %qmake_qt4 2ManDVD.pro
