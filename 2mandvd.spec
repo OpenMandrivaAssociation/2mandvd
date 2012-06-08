@@ -1,8 +1,8 @@
 %define srcname	2ManDVD
 
 Name:		2mandvd
-Version:	1.7.3
-Release:	%mkrel 1
+Version:	1.8.2
+Release:	1
 Summary:	Video DVD creation tool, successor to ManDVD
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
