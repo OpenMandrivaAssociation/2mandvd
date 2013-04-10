@@ -1,14 +1,14 @@
-%define srcname	2ManDVD
+%define srcname 2ManDVD
 
 Name:		2mandvd
 Version:	1.8.2
-Release:	1
+Release:	2
 Summary:	Video DVD creation tool, successor to ManDVD
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
 License:	GPLv2 and LGPL
 Group:		Video
-Source:		http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
+Source0:	http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 Patch:		2ManDVD-ffmpeg-0.11.patch
 
 BuildRequires:	qt4-devel >= 4.6
@@ -33,7 +33,7 @@ Obsoletes:	2ManDVD
 2ManDVD is a graphical tool for creating Video DVDs and slideshows, including
 menus.
 
-N.B. Executable name is 2ManDVD
+N.B. Executable name is 2ManDVD.
 
 %prep
 %setup -q -n %{srcname}
@@ -44,24 +44,23 @@ N.B. Executable name is 2ManDVD
 %make
 
 %install
-%__rm -rf %{buildroot}
 
 # put the executable in %{_datadir}/%{name} and symlink it to %_bindir
 # otherwise the UI localizations don't work
-%__install -D -m 755 %{srcname} %{buildroot}%{_datadir}/%{srcname}/%{srcname}
+install -D -m 755 %{srcname} %{buildroot}%{_datadir}/%{srcname}/%{srcname}
 
-%__mkdir_p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
 	ln -s %{_datadir}/%{srcname}/%{srcname} 2ManDVD
 popd
 
-%__install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
-%__install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
+install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
+install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
 
 # create .desktop file
-%__mkdir_p %{buildroot}%{_datadir}/applications/
+mkdir_p %{buildroot}%{_datadir}/applications/
 
-%__cat > %{buildroot}%{_datadir}/applications/%{srcname}.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/%{srcname}.desktop << EOF
 [Desktop Entry]
 Type=Application
 Exec=2ManDVD -graphicssystem raster
@@ -74,13 +73,9 @@ Categories=AudioVideo;DiscBurning;
 X-KDE-StartupNotify=true
 EOF
 
-%__install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
-
-%clean
-%__rm -rf %{buildroot}
+install -D -m 644 Interface/mandvd.png %{buildroot}%{_datadir}/pixmaps/%{srcname}.png
 
 %files
-%defattr(-,root,root)
 %{_bindir}/%{srcname}
 %dir %{_datadir}/%{srcname}
 %{_datadir}/%{srcname}/%{srcname}
