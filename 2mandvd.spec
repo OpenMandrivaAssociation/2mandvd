@@ -1,19 +1,20 @@
 %define srcname 2ManDVD
 
 Name:		2mandvd
-Version:	1.8.2
-Release:	2
+Version:	1.8.5
+Release:	1
 Summary:	Video DVD creation tool, successor to ManDVD
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
 License:	GPLv2 and LGPL
 Group:		Video
 Source0:	http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
-Patch:		2ManDVD-ffmpeg-0.11.patch
+Patch0:		2ManDVD-ffmpeg-0.11.patch
 
 BuildRequires:	qt4-devel >= 4.6
 BuildRequires:	ffmpeg-devel
-BuildRequires:	SDL-devel
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(glu)
 
 Requires:	dvd+rw-tools
 Requires:	dvdauthor
@@ -37,7 +38,9 @@ N.B. Executable name is 2ManDVD.
 
 %prep
 %setup -q -n %{srcname}
-%patch -p1 -b .compile~
+%patch0 -p1 -b .compile~
+# Clean backup files
+find . -name "*~" -delete || die
 
 %build
 %qmake_qt4 2ManDVD.pro
@@ -58,7 +61,7 @@ install -m 644 2mandvd_*.qm %{buildroot}%{_datadir}/%{srcname}
 install -m 644 fake.pl %{buildroot}%{_datadir}/%{srcname}
 
 # create .desktop file
-mkdir_p %{buildroot}%{_datadir}/applications/
+mkdir -p %{buildroot}%{_datadir}/applications/
 
 cat > %{buildroot}%{_datadir}/applications/%{srcname}.desktop << EOF
 [Desktop Entry]
