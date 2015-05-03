@@ -12,7 +12,7 @@ Source0:	http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 Patch0:		2ManDVD-1.8.5-ffmpeg2.0.patch
 Patch1:		2ManDVD-1.8.5-install.patch
 BuildRequires:	qt4-devel >= 4.6
-BuildRequires:	ffmpeg-devel
+BuildRequires:	ffmpeg-devel >= 2.5.4
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(sdl)
 
