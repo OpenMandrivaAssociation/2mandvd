@@ -12,8 +12,8 @@ Source0:	http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
 Patch:		2ManDVD-ffmpeg-0.11.patch
 
 BuildRequires:	qt4-devel >= 4.6
-BuildRequires:	ffmpeg-devel
-BuildRequires:	SDL-devel
+BuildRequires:	ffmpeg-devel >= 2.5.4
+BuildRequires:	pkgconfig(sdl)
 
 Requires:	dvd+rw-tools
 Requires:	dvdauthor
