@@ -1,0 +1,12 @@
+diff -urN 2ManDVD/2ManDVD.pro 2ManDVD-patched/2ManDVD.pro
+--- 2ManDVD/2ManDVD.pro	2013-08-09 22:22:42.963897262 +1100
++++ 2ManDVD-patched/2ManDVD.pro	2013-08-09 22:23:25.194663055 +1100
+@@ -40,7 +40,7 @@
+ INSTALLS += target FAKE_DIR BIBLIOTHEQUE_DIR TRANSLATIONS_DIR desktop
+ INSTALLS += ICONS_DIR
+ 
+-unix:ICONS_DIR.extra = chmod -R 755 $$BIBLIOTHEQUE_DIR.path
++unix:ICONS_DIR.extra = chmod -R 755 $(INSTALL_ROOT)$$BIBLIOTHEQUE_DIR.path
+ 
+ QT += opengl
+ TRANSLATIONS = 2mandvd_en.ts \
