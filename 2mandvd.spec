@@ -1,15 +1,15 @@
 %define srcname 2ManDVD
+%define _disable_lto 1
 
 Name:		2mandvd
 Version:	1.8.5
-Release:	3
+Release:	4
 Summary:	Video DVD creation tool, successor to ManDVD
 URL:		http://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
 License:	GPLv2 and LGPL
 Group:		Video
 Source0:	http://download.tuxfamily.org/2mandvd/%{srcname}-%{version}.tar.gz
-Patch0:		2ManDVD-ffmpeg-0.11.patch
 
 BuildRequires:	qt4-devel >= 4.6
 BuildRequires:	ffmpeg-devel
@@ -38,13 +38,17 @@ N.B. Executable name is 2ManDVD.
 
 %prep
 %setup -q -n %{srcname}
-%patch0 -p1 -b .compile~
 # Clean backup files
 find . -name "*~" -delete || die
 
+sed -i '41s|#ifdef|//#ifdef|' videowrapper.cpp
+sed -i '42i #if LIBAVFORMAT_VERSION_MAJOR >= 53' videowrapper.cpp
+sed -i 's|PIX_FMT|AV_PIX_FMT|' videowrapper.cpp
+sed -i 's/avcodec_alloc_frame/av_frame_alloc/' videowrapper.cpp
+
 %build
 %qmake_qt4 2ManDVD.pro
-%make
+%make CXX=g++
 
 %install
 
