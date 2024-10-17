@@ -5,7 +5,7 @@ Name:		2mandvd
 Version:	1.8.5
 Release:	4
 Summary:	Video DVD creation tool, successor to ManDVD
-URL:		http://2mandvd.tuxfamily.org/
+URL:		https://2mandvd.tuxfamily.org/
 # GPLv2 and LGPL for some icons
 License:	GPLv2 and LGPL
 Group:		Video
